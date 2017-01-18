@@ -1,33 +1,123 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,500,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css" />
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+
     <title>CSS/HTML Workshop with Drivy</title>
   </head>
   <body>
-    <div id="car">
-      <input class="model" type="text" placeholder="Car model"/>
-      <input class="price-by-day" type="number" placeholder="Price by day"/>
-      <input class="price-by-km" type="number" placeholder="Price by km"/>
+
+    <style>
+      .demo-card-wide.mdl-card {
+        width: 1024px;
+        align-self: center;
+      }
+      .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 320px;
+        background: url('.\\images\\aston.jpg') center / cover;
+      }
+      .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+      }
+    </style>
+
+    <div class="mdl-layout-spacer"></div>
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Rent a car</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Welcome to Drivy. Just select your favorite car, and get down the miles.
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Get Started
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+      </div>
     </div>
-    <div id="rental">
-      <input class="begin" type="date" placeholder="Rental begin date"/>
-      <input class="end" type="date" placeholder="Rental end date"/>
-      <input class="distance" type="number" placeholder="Distance in km"/>
-      <input class="option" type="checkbox" placeholder="Deductible option"/>
-    </div>
-    <button id="compute">Compute</button>
-    <div id="actors"></div>
-    <script id="template" type="x-tmpl-mustache">
-      {{#actors}}
-        <div class="actor">
-          <span>{{who}}</span>
-          <span>{{type}}</span>
-          <span>{{amount}}</span>
+    <div class="mdl-layout-spacer"></div>
+
+    <div class="grid-content mdl-grid">
+
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+        <div class="mdl-card__supporting-text">
+          <p>Car informations</p>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="car">
+            <label class="mdl-textfield__label" for="car">Car model</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="[0-9]*(\.[0-9]+)?" id="pbd">
+            <label class="mdl-textfield__label" for="pbd">Price by day</label>
+            <span class="mdl-textfield__error">Price must be a positiv number!</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="[0-9]*(\.[0-9]+)?" id="pdk">
+            <label class="mdl-textfield__label" for="pdk">Price by kilometer</label>
+            <span class="mdl-textfield__error">Price must be a positiv number!</span>
+          </div>
         </div>
-      {{/actors}}
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
-    <script src="drivy.js"></script>
-    <script src="index.js"></script>
+      </div>
+
+      <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+        <div class="mdl-card__supporting-text">
+          <p>Rental informations</p>
+
+          <div id="rsd">
+            <input class="begin" type="date" placeholder="Rental begin date"/>
+          </div>
+          <div id="red">
+            <input class="end" type="date" placeholder="Rental end date"/>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="[0-9]*(\.[0-9]+)?" id="dik">
+            <label class="mdl-textfield__label" for="dik">Distance</label>
+            <span class="mdl-textfield__error">Distance must be a positiv number!</span>
+          </div>
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="ddoption">
+            <input type="checkbox" id="ddoption" class="mdl-switch__input">
+            <span class="mdl-switch__label"></span>
+          </label>
+          Deductible Option
+        </div>
+      </div>
+
+      <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+        <div class="mdl-card__supporting-text">
+          <p>Compute results</p>
+
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+            Compute
+          </button>
+
+          <div id="actors"></div>
+          <script id="template" type="x-tmpl-mustache">
+            {{#actors}}
+              <div class="actor">
+                <span>{{who}}</span>
+                <span>{{type}}</span>
+                <span>{{amount}}</span>
+              </div>
+            {{/actors}}
+          </script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+          <script src="drivy.js"></script>
+          <script src="index.js"></script>
+        </div>
+      </div>
+      <div class="mdl-layout-spacer"></div>
+
+    </div>
+
+
   </body>
 </html>
