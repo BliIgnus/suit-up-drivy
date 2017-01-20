@@ -1,0 +1,36 @@
+body {
+  background-image: url("./images/background.jpg");
+  background-attachment: fixed;
+}
+
+p {
+  color : black;
+}
+
+.mdl-textfield__input {
+  color : black;
+}
+
+.mdl-textfield__label {
+  color : black;
+}
+
+.mdl-card__media > img {
+  max-width: 100%;
+}
+
+
+
+.mdl-card > .mdl-card__title {
+  color: #fff;
+  height: 320px;
+  background: url('.\\images\\aston.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.mdl-card {
+  background-color: rgba(50, 50, 50, 0.8);
+  text-decoration-color: rgb(0, 0, 0);
+}
